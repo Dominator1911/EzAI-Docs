@@ -13,7 +13,7 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import {initialNodes, nodeTypes} from '../nodes';
-import {initialEdges, edgeTypes} from '../edges';
+import {initialEdges, edgeTypes, style} from '../edges';
 import {AppNode} from '../nodes/types';
 
 const nodeClassName = (node: AppNode) => node.type || 'default';
@@ -22,7 +22,7 @@ const FlowPage = () => {
     const [nodes, , onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
     const onConnect: OnConnect = useCallback(
-        (connection) => setEdges((edges) => addEdge(connection, edges)),
+        (connection) => setEdges((edges) => addEdge({...connection, animated: true, style}, edges)),
         [setEdges]
     );
 
